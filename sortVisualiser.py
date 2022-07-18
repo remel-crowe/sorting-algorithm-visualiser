@@ -35,8 +35,8 @@ class drawInformation:
         self.min_val = min(list)
         self.max_val = max(list)
         #calculate the length and width of each bar that represents an element
-        self.block_width = round(self.width - self.SIDE_PAD / len(list))
-        self.block_height = round((self.height - self.TOP_PAD) / (self.max_val-self.min_val))
+        self.block_width = round((self.width - self.SIDE_PAD) / len(list))
+        self.block_height = math.floor((self.height - self.TOP_PAD) / (self.max_val-self.min_val))
         self.start_x = self.SIDE_PAD // 2
 
 
@@ -55,7 +55,8 @@ def draw_list(draw_info): #
         y = draw_info.height - (val - draw_info.min_val) * draw_info.block_height
 
         colour = draw_info.GREYS[i % 3]
-        pygame.draw.rect(draw_info.window, colour, (x, y, draw_info.block_height,draw_info.block_width))
+
+        pygame.draw.rect(draw_info.window, colour, (x, y, draw_info.block_width, draw_info.height))
 
 #generate a list of random elements that will be passed to the draw function.
 def generate_starting_list(n, min_val, max_val):
@@ -76,7 +77,7 @@ def main():
 
     list = generate_starting_list(n,min_val,max_val)
     #instantiate the drawInformation class under the name draw_info.
-    draw_info = drawInformation(900,700, list) 
+    draw_info = drawInformation(800,600, list) 
 
     while run:
         clock.tick(60)
@@ -90,3 +91,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
