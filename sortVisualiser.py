@@ -1,7 +1,3 @@
-from lib2to3.pgen2.token import BACKQUOTE
-from operator import ge
-from re import T
-from webbrowser import BackgroundBrowser
 import pygame
 import random
 import math
